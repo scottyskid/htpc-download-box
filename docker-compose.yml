@@ -73,22 +73,6 @@ services:
       - ${ROOT}/config/plex/db:/config # plex database
       - ${ROOT}/config/plex/transcode:/transcode # temp transcoded files
       - ${ROOT}/complete:/data # media library
-
-  bazarr:
-    container_name: bazarr
-    image: linuxserver/bazarr
-    restart: unless-stopped
-    ports:
-      - 6767:6767
-    environment:
-      - PUID=${PUID} # default user id, defined in .env
-      - PGID=${PGID} # default group id, defined in .env
-      - TZ=${TZ} # timezone, defined in .env
-      # - UMASK_SET=022 #optional
-    volumes:
-      - ${ROOT}/config/bazarr:/config # config files
-      - ${ROOT}/complete/movies:/movies # movies folder
-      - ${ROOT}/complete/tv:/tv # tv shows folder
     
   organizr:
     container_name: organizr
@@ -129,3 +113,25 @@ services:
       - TZ=${TZ} # timezone, defined in .env
     volumes:
       - ${ROOT}/config/prowlarr:/config # config files
+
+  tautulli:
+    container_name: tautulli
+    image: lscr.io/linuxserver/tautulli
+    restart: unless-stopped
+    ports:
+      - 8181:8181
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+    volumes:
+      - ${ROOT}/config/tautulli:/config # config files
+  
+  requestrr:
+    container_name: requestrr 
+    image: darkalfx/requestrr
+    restart: unless-stopped
+    ports:
+      - 4545:4545
+    volumes:
+      - ${ROOT}/config/requestrr:/config # config files
