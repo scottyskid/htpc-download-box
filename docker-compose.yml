@@ -115,3 +115,17 @@ services:
       - TZ=${TZ} # timezone, defined in .env
     volumes:
       - ${ROOT}/config/overseerr:/config # config files
+
+  prowlarr:
+    container_name: prowlarr
+    image: lscr.io/linuxserver/prowlarr:develop # no master branch avaliable at this time
+    # version: develop
+    restart: unless-stopped
+    ports:
+      - 9696:9696
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+    volumes:
+      - ${ROOT}/config/prowlarr:/config # config files
