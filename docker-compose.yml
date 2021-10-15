@@ -109,7 +109,7 @@ services:
   
   overseerr:
     container_name: overseerr
-    image: lscr.io/linuxserver/overseerr
+    image: lscr.io/linuxserver/overseerr:latest
     restart: unless-stopped
     ports:
       - 5055:5055
@@ -136,7 +136,7 @@ services:
 
   tautulli:
     container_name: tautulli
-    image: lscr.io/linuxserver/tautulli
+    image: lscr.io/linuxserver/tautulli:latest
     restart: unless-stopped
     ports:
       - 8181:8181
@@ -149,7 +149,7 @@ services:
   
   requestrr:
     container_name: requestrr 
-    image: darkalfx/requestrr
+    image: darkalfx/requestrr:latest
     restart: unless-stopped
     ports:
       - 4545:4545
