@@ -144,3 +144,7 @@ services:
       - 4545:4545
     volumes:
       - ${ROOT}/config/requestrr:/root/config # config files
+
+networks:
+  default:
+    driver: bridge
