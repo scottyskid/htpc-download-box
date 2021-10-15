@@ -1,5 +1,16 @@
-#version: "3.4" # 192.168.86.212
+version: "3.8"
 services:
+  nginx:
+    image: nginx:latest
+    container_name: webserver
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      -  ${ROOT}/config/nginx:/etc/nginx
+      - ${ROOT}/config/nginx/ssl:/ssl
+
   vpn:
     container_name: vpn
     image: dperson/openvpn-client:latest
@@ -85,7 +96,7 @@ services:
     
   organizr:
     container_name: organizr
-    image: organizr/organizr
+    image: organizr/organizr:latest
     restart: unless-stopped
     ports:
       - 8080:80
