@@ -1,15 +1,14 @@
 version: "3.8"
 services:
   nginx:
+    container_name: nginx
     image: nginx:latest
-    container_name: webserver
-    restart: unless-stopped
     ports:
       - 80:80
       - 443:443
     volumes:
-      -  ${ROOT}/config/nginx:/etc/nginx
-      - ${ROOT}/config/nginx/ssl:/ssl
+      - ${ROOT}/config/nginx-reverse-proxy:/etc/nginx/conf.d
+      - ${ROOT}/config/ssl:/etc/ssl/private
 
   vpn:
     container_name: vpn
