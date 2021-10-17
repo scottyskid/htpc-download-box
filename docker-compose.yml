@@ -10,6 +10,23 @@ services:
       - ${ROOT}/config/nginx-reverse-proxy:/etc/nginx/conf.d
       - ${ROOT}/config/ssl:/etc/ssl/private
 
+  letsencrypt:
+    image: linuxserver/letsencrypt
+    container_name: letsencrypt
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - URL=scottyskidmore.com
+      - SUBDOMAINS=wildcard,
+      - VALIDATION=dns
+      - DNSPLUGIN=cloudflare
+      - EMAIL=scotty.skidmore@gmail.com
+      - DHLEVEL=4096
+    volumes:
+      - ${ROOT}/config/letsencrypt:/config
+    restart: unless-stopped
+
   vpn:
     container_name: vpn
     image: dperson/openvpn-client:latest
